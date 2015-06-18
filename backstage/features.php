@@ -22,18 +22,13 @@ if (isset($_POST['form_sent'])) {
 		'ranks'							=> isset($_POST['form']['ranks']) ? '1' : '0',
 		'topic_views'					=> isset($_POST['form']['topic_views']) ? '1' : '0',
 		'has_posted'					=> isset($_POST['form']['has_posted']) ? '1' : '0',
-		'show_first_run'				=> isset($_POST['form']['show_first_run']) ? '1' : '0',
-		'first_run_guests'				=> isset($_POST['form']['first_run_guests']) ? '1' : '0',
-		'first_run_message'				=> luna_trim($_POST['form']['first_run_message']),
 		'smilies_sig'					=> isset($_POST['form']['smilies_sig']) ? '1' : '0',
 		'make_links'					=> isset($_POST['form']['make_links']) ? '1' : '0',
 		'indent_num_spaces'				=> (intval($_POST['form']['indent_num_spaces']) >= 0) ? intval($_POST['form']['indent_num_spaces']) : 0,
 		'quote_depth'					=> (intval($_POST['form']['quote_depth']) > 0) ? intval($_POST['form']['quote_depth']) : 1,
 		'video_width'					=> (intval($_POST['form']['video_width']) > 0) ? intval($_POST['form']['video_width']) : 640,
 		'video_height'					=> (intval($_POST['form']['video_height']) > 0) ? intval($_POST['form']['video_height']) : 360,
-		'gzip'							=> isset($_POST['form']['gzip']) ? '1' : '0',
 		'search_all_forums'				=> isset($_POST['form']['search_all_forums']) ? '1' : '0',
-		'enable_advanced_search'		=> isset($_POST['form']['enable_advanced_search']) ? '1' : '0',
 	);
 
 	foreach ($form as $key => $input) {
@@ -125,49 +120,10 @@ if (isset($_GET['saved']))
 					<div class="col-sm-9">
 						<div class="checkbox">
 							<label>
-								<input type="checkbox" name="form[enable_advanced_search]" value="1" <?php if ($luna_config['o_enable_advanced_search'] == '1') echo ' checked' ?> />
-								<?php _e('Allow users to use the advanced search options.', 'luna') ?>
-							</label>
-						</div>
-						<div class="checkbox">
-							<label>
 								<input type="checkbox" name="form[search_all_forums]" value="1" <?php if ($luna_config['o_search_all_forums'] == '1') echo ' checked' ?> />
 								<?php _e('Allow search only in 1 forum at a time.', 'luna') ?>
 							</label>
 						</div>
-					</div>
-				</div>
-			</fieldset>
-		</div>
-	</div>
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title"><?php _e('First run', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
-		</div>
-		<div class="panel-body">
-			<input type="hidden" name="form_sent" value="1" />
-			<fieldset>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('General settings', 'luna') ?></label>
-					<div class="col-sm-9">
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" name="form[show_first_run]" value="1" <?php if ($luna_config['o_show_first_run'] == '1') echo ' checked' ?> />
-								<?php _e('Show the first run panel when an user logs in for the first time.', 'luna') ?>
-							</label>
-						</div>
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" name="form[first_run_guests]" value="1" <?php if ($luna_config['o_first_run_guests'] == '1') echo ' checked' ?> />
-								<?php _e('Show the first run panel to guests with login field and registration button.', 'luna') ?>
-							</label>
-						</div>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Welcome text', 'luna') ?><span class="help-block"><?php _e('The introduction to the forum displayed in the middle of the first run panel', 'luna') ?></span>  </label>
-					<div class="col-sm-9">
-						<input type="text" class="form-control" name="form[first_run_message]" maxlength="255" value="<?php echo luna_htmlspecialchars($luna_config['o_first_run_message']) ?>" />
 					</div>
 				</div>
 			</fieldset>
@@ -220,27 +176,6 @@ if (isset($_GET['saved']))
 					<label class="col-sm-3 control-label"><?php _e('Video width', 'luna') ?><span class="help-block"><?php _e('Width of an embedded video', 'luna') ?></span></label>
 					<div class="col-sm-9">
 						<input type="text" class="form-control" name="form[video_height]" maxlength="4" value="<?php echo $luna_config['o_video_height'] ?>" />
-					</div>
-				</div>
-			</fieldset>
-		</div>
-	</div>
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title"><?php _e('Advanced', 'luna') ?><span class="pull-right"><button class="btn btn-primary" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Save', 'luna') ?></button></span></h3>
-		</div>
-		<div class="panel-body">
-			<input type="hidden" name="form_sent" value="1" />
-			<fieldset>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php _e('Advanced', 'luna') ?></label>
-					<div class="col-sm-9">
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" name="form[gzip]" value="1" <?php if ($luna_config['o_gzip'] == '1') echo ' checked' ?> />
-								<?php _e('Gzip output sent to the browser. This will reduce bandwidth usage, but use some more CPU. This feature requires that PHP is configured with zlib. If you already have one of the Apache modules (mod_gzip/mod_deflate) set up to compress PHP scripts, disable this feature.', 'luna') ?>
-							</label>
-						</div>
 					</div>
 				</div>
 			</fieldset>

@@ -506,17 +506,6 @@ if (!$search_id) {
 
 		require load_page('footer.php');
 	} else {
-		if ($luna_config['o_enable_advanced_search'] == 0) {
-			message(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
-		} else {
-			$page_title = array(luna_htmlspecialchars($luna_config['o_board_title']), __('Search', 'luna'));
-			$focus_element = array('search', 'keywords');
-			define('FORUM_ACTIVE_PAGE', 'search');
-			require load_page('header.php');
-	
-			require load_page('search-advanced.php');
-
-			require load_page('footer.php');
-		}
+		message(__('You do not have permission to access this page.', 'luna'), false, '403 Forbidden');
 	}
 }

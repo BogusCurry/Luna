@@ -1225,11 +1225,6 @@ class Installer {
 					'allow_null'	=> false,
 					'default'		=> '0'
 				),
-				'first_run'		=> array(
-					'datatype'		=> 'TINYINT(1)',
-					'allow_null'	=> false,
-					'default'		=> '0'
-				),
 				'color_scheme'	=> array(
 					'datatype'		=> 'INT(25)',
 					'allow_null'	=> false,
@@ -1386,7 +1381,6 @@ class Installer {
 			'o_ranks'					=> 1,
 			'o_has_posted'				=> 1,
 			'o_topic_views'				=> 1,
-			'o_gzip'					=> 0,
 			'o_report_method'			=> 0,
 			'o_regs_report'				=> 0,
 			'o_default_email_setting'	=> 1,
@@ -1402,10 +1396,6 @@ class Installer {
 			'o_webmaster_email'			=> $email,
 			'o_forum_subscriptions'		=> 1,
 			'o_topic_subscriptions'		=> 1,
-			'o_first_run_message'		=> __('Wow, it\'s great to have you here, welcome and thanks for joining us. We\'ve set up your account and you\'re ready to go. Though we like to point out some actions you might want to do first.', 'luna'),
-			'o_show_first_run'			=> 1,
-			'o_first_run_guests'		=> 1,
-			'o_first_run_backstage'		=> 0,
 			'o_smtp_host'				=> NULL,
 			'o_smtp_user'				=> NULL,
 			'o_smtp_pass'				=> NULL,
@@ -1414,7 +1404,6 @@ class Installer {
 			'o_regs_verify'				=> 0,
 			'o_video_width'				=> 640,
 			'o_video_height'			=> 360,
-			'o_enable_advanced_search'	=> 1,
 			'o_announcement'			=> 0,
 			'o_announcement_message'	=> __('Announcement', 'luna'),
 			'o_announcement_title'		=> NULL,

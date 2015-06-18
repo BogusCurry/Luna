@@ -338,21 +338,6 @@ switch ($stage) {
 		if (array_key_exists('o_show_dot', $luna_config))
 			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_show_dot\'') or error('Unable to remove config value \'o_show_dot\'', __FILE__, __LINE__, $db->error());
 
-		// Since 3.2-alpha: Add the first_run column to the users table
-		$db->add_field('users', 'first_run', 'TINYINT(1)', false, 0) or error('Unable to add first_run field', __FILE__, __LINE__, $db->error());
-
-		// Since 3.2-alpha: Insert new config option o_show_first_run
-		if (!array_key_exists('o_show_first_run', $luna_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_show_first_run\', \'1\')') or error('Unable to insert config value \'o_show_first_run\'', __FILE__, __LINE__, $db->error());
-
-		// Since 3.2-alpha: Insert new config option o_first_run_guests
-		if (!array_key_exists('o_first_run_guests', $luna_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_first_run_guests\', \'1\')') or error('Unable to insert config value \'o_first_run_guests\'', __FILE__, __LINE__, $db->error());
-
-		// Since 3.2-alpha: Insert new config option o_first_run_message
-		if (!array_key_exists('o_first_run_message', $luna_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_first_run_message\', \'\')') or error('Unable to insert config value \'o_first_run_message\'', __FILE__, __LINE__, $db->error());
-
 		// Since 3.2-alpha: Remove obsolete o_redirect_delay permission from config table
 		if (array_key_exists('o_redirect_delay', $luna_config))
 			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_redirect_delay\'') or error('Unable to remove config value \'o_redirect_delay\'', __FILE__, __LINE__, $db->error());
@@ -360,10 +345,6 @@ switch ($stage) {
 		// Since 3.2-beta: Add o_has_posted
 		if (!array_key_exists('o_has_posted', $luna_config))
 			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_has_posted\', \'1\')') or error('Unable to insert config value \'o_has_posted\'', __FILE__, __LINE__, $db->error());
-
-		// Since 3.3-alpha: Add o_enable_advanced_search
-		if (!array_key_exists('o_enable_advanced_search', $luna_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_enable_advanced_search\', \'1\')') or error('Unable to insert config value \'o_enable_advanced_search\'', __FILE__, __LINE__, $db->error());
 
 		// Since 3.3-beta: Drop the backstage_style column from the forums table
 		$db->drop_field('users', 'backstage_style', 'INT', true, 0) or error('Unable to drop backstage_style field', __FILE__, __LINE__, $db->error());
@@ -546,10 +527,6 @@ switch ($stage) {
 		// Since 0.2.3414: Remove obsolete o_forum_new_style permission from config table
 		if (array_key_exists('o_forum_new_style', $luna_config))
 			$db->query('DELETE FROM '.$db->prefix.'config WHERE conf_name = \'o_forum_new_style\'') or error('Unable to remove config value \'o_forum_new_style\'', __FILE__, __LINE__, $db->error());
-
-		// Since 0.2.3459: Add o_first_run_backstage feature
-		if (!array_key_exists('o_first_run_backstage', $luna_config))
-			$db->query('INSERT INTO '.$db->prefix.'config (conf_name, conf_value) VALUES (\'o_first_run_backstage\', \'0\')') or error('Unable to insert config value \'o_first_run_backstage\'', __FILE__, __LINE__, $db->error());
 
 		// Since 0.2.3495: Add o_emoji_size feature
 		if (!array_key_exists('o_emoji_size', $luna_config))

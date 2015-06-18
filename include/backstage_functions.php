@@ -62,8 +62,6 @@ function load_admin_nav($section, $page) {
 		$page_title = '<span class="fa fa-fw fa-coffee"></span> '.__('Maintenance', 'luna');
 	elseif ($page == 'prune')
 		$page_title = '<span class="fa fa-fw fa-recycle"></span> '.__('Prune', 'luna');
-	elseif ($page == 'database')
-		$page_title = '<span class="fa fa-fw fa-database"></span> '.__('Database management', 'luna');
 
 	elseif ($page == 'info')
 		$page_title = '<span class="fa fa-fw fa-info-circle"></span> '.__('Info', 'luna');
@@ -181,7 +179,6 @@ function load_admin_nav($section, $page) {
 			<ul class="nav nav-tabs" role="tablist">
 				<li<?php if($page == 'maintenance') echo ' class="active"' ?>><a href="maintenance.php"><span class="fa fa-fw fa-coffee"></span><span class="hidden-xs"> <?php _e('Maintenance', 'luna') ?></span></a></li>
 				<li<?php if($page == 'prune') echo ' class="active"' ?>><a href="prune.php"><span class="fa fa-fw fa-recycle"></span><span class="hidden-xs"> <?php _e('Prune', 'luna') ?></span></a></li>
-				<li<?php if($page == 'database') echo ' class="active"' ?>><a href="database.php"><span class="fa fa-fw fa-database"></span><span class="hidden-xs"> <?php _e('Database', 'luna') ?></span></a></li>
 			</ul>
 			<?php } ?>
 		</div>

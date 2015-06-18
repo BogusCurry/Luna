@@ -136,11 +136,7 @@ if (!array_key_exists('o_core_version', $luna_config) || version_compare($luna_c
 
 // Enable output buffering
 if (!defined('FORUM_DISABLE_BUFFERING')) {
-	// Should we use gzip output compression?
-	if ($luna_config['o_gzip'] && extension_loaded('zlib'))
-		ob_start('ob_gzhandler');
-	else
-		ob_start();
+	ob_start();
 }
 
 // Define standard date/time formats

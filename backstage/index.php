@@ -42,21 +42,6 @@ if (isset($_POST['form_sent'])) {
 	redirect('backstage/index.php?saved=true');
 }
 
-if (isset($_POST['first_run_disable'])) {
-	confirm_referrer(array('backstage/index.php', 'backstage/'));
-
-	$db->query('UPDATE '.$db->prefix.'config SET conf_value=1 WHERE conf_name=\'o_first_run_backstage\'') or error('Unable to update board config', __FILE__, __LINE__, $db->error());
-
-	// Regenerate the config cache
-	if (!defined('FORUM_CACHE_FUNCTIONS_LOADED'))
-		require FORUM_ROOT.'include/cache.php';
-
-	generate_config_cache();
-	clear_feed_cache();
-
-	redirect('backstage/index.php?saved=true');
-}
-
 // Collect some statistics from the database
 if (file_exists(FORUM_CACHE_DIR.'cache_update.php'))
 	include FORUM_CACHE_DIR.'cache_update.php';
@@ -100,40 +85,6 @@ if ($install_file_exists) : ?>
 if (($luna_config['o_update_ring'] == '0') && $supported == 'none') { ?>
 <div class="alert alert-danger">
 	<p><?php _e('End of life warning', 'luna') ?></p>
-</div>
-<?php }
-
-if ($luna_config['o_first_run_backstage'] == 0) { ?>
-<div class="panel panel-primary hidden-xs">
-	<div class="panel-heading">
-		<h3 class="panel-title"><?php _e('Welcome to Luna', 'luna') ?>
-			<span class="pull-right">
-				<form class="form-horizontal" method="post" action="index.php">
-					<input type="hidden" name="first_run_disable" value="1" />
-					<button class="btn btn-success" type="submit" name="save"><span class="fa fa-fw fa-check"></span> <?php _e('Got it', 'luna') ?></button>
-				</form>
-			</span>
-		</h3>
-	</div>
-	<div class="panel-body">
-		<div class="row">
-			<div class="col-sm-4">
-				<p><?php _e('Welcome to the Backstage. Here, you can manage your newly set up board. We\'re ready to go now, but there might be a couple of settings you might want to change. So let us help you with that first!', 'luna') ?></p>
-			</div>
-			<div class="col-sm-4">
-				<div class="list-group">
-					<a href="about.php" class="list-group-item"><?php _e('What\'s new', 'luna') ?></a>
-					<a href="board.php" class="list-group-item"><?php _e('Create new sections', 'luna') ?></a>
-				</div>
-			</div>
-			<div class="col-sm-4">
-				<div class="list-group">
-					<a href="features.php" class="list-group-item"><?php _e('Alter functionality', 'luna') ?></a>
-					<a href="settings.php" class="list-group-item"><?php _e('Change settings', 'luna') ?></a>
-				</div>
-			</div>
-		</div>
-	</div>
 </div>
 <?php } ?>
 <div class="row">
@@ -190,17 +141,7 @@ if ($db->num_rows($result)) {
 					</table>
 				</div>
 			</div>
-			<div class="col-lg-5">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h3 class="panel-title"><?php _e('Back-up', 'luna') ?></h3>
-					</div>
-					<div class="panel-body">
-						<a class="btn btn-block btn-primary" href="database.php"><?php _e('Create new backup', 'luna') ?></a>
-					</div>
-				 </div>
-			</div>
-			<div class="col-lg-7">
+			<div class="col-lg-12">
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h3 class="panel-title"><?php _e('Statistics', 'luna') ?></h3>
